@@ -49,34 +49,117 @@ const restaurant = {
       `here is your delicious pasta with ${ing1},${ing2} and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngrident) {
+    console.log(mainIngredient, otherIngrident);
+  },
 };
-//! real world example
-const arr = [7, 8, 9];
+const rest1 = {
+  name: 'Capri',
+  // numGuests: 20,
+  numGuests: 0,
+};
+const rest2 = {
+  name: 'la Pizza',
+  owner: 'Givanni Rossi',
+};
 
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+//? or assigment opartor
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests = rest1.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
 
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
 
-console.log(...newArr);
+rest2.owner = rest2.owner && '<ANNNYMUS>';
+console.log(rest1);
+console.log(rest2);
 
-const newMenu = [...restaurant.mainMenu, 'gnocci'];
-console.log(newMenu);
+//? use ANY data type, return Any data type operators
+// console.log('------ OR -------');
+// console.log(false || 3);
+// console.log('' || 'uriel');
+// console.log(true || 0);
+// console.log(undefined || null);
 
-//?copy array
+// console.log(undefined || 0 || '' || 'hello' || 22 || null);
 
-const mainMenuCopy = [...restaurant.mainMenu];
+// restaurant.numGuests = 0;
+// const geust2 = restaurant.numGuests || 10;
+// console.log(geust2);
 
-//? join 2 array
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+// //? Nullish: null and undefind (NOT 0 or '')
+// const geustCorrect = restaurant.numGuests ?? 10;
+// console.log(geustCorrect);
+// console.log('------ AND -------');
 
-//? Iterbales: array, string , maps , sets .NOT objects
-const str = 'uriel';
-const letters = [...str, '', 's'];
+// console.log(0 && 'uriel');
+// console.log(7 && 'uriel');
+// console.log('dvsdv' && 23 && null && 'urie');
+// if (restaurant.orderPizza) {
+//   console.log(restaurant.orderPizza('mushroom', 'olivie', 'asdcas'));
+// }
+// console.log(
+//   restaurant.orderPizza && restaurant.orderPizza('mushroom', 'olivie', 'asdcas')
+// );
 
-console.log(letters);
+//? 1) destructuring
+// const arr = [1, 2, ...[3, 4]];
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+//! יצירת משתנים של מערך מתוך האובייקט
+
+// const [pizza, , risotto, ...otherFodd] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFodd);
+
+//? 2)functions
+
+// const add = (...numbers) => {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+//   console.log(sum);
+// };
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 1, 4);
+
+// const x = [23, 5, 7];
+// add(...x);
+
+// restaurant.orderPizza('mushroom', 'onion', 'olive', 'tuna', 'pomedore');
+
+//? the spread operator (...)
+// const arr = [7, 8, 9];
+
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
+
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+
+// console.log(...newArr);
+
+// const newMenu = [...restaurant.mainMenu, 'gnocci'];
+// console.log(newMenu);
+
+// //?copy array
+
+// const mainMenuCopy = [...restaurant.mainMenu];
+
+// //? join 2 array
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+// //? Iterbales: array, string , maps , sets .NOT objects
+// const str = 'uriel';
+// const letters = [...str, '', 's'];
+
+// console.log(letters);
 
 // const ingridient = [
 //   prompt('lets make pasta! Ingredient 1?'),
@@ -86,13 +169,16 @@ console.log(letters);
 // restaurant.orderPasta(...ingridient);
 
 //! objects
-const newRustaurant = { founding: 1998, ...restaurant, founder: 'Guisppe' };
-console.log(newRustaurant);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorante Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+const { fri, ...weekday } = restaurant.openingHours;
+
+// const newRustaurant = { founding: 1998, ...restaurant, founder: 'Guisppe' };
+// console.log(newRustaurant);
+
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Roma';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
 
 //!destructing Objects
 // restaurant.orderDelivery({
